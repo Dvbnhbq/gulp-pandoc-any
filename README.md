@@ -1,82 +1,57 @@
-# gulp-pandoc [![NPM version](https://badge.fury.io/js/gulp-pandoc.png)](http://badge.fury.io/js/gulp-pandoc) [![Build Status](https://travis-ci.org/gummesson/gulp-pandoc.png?branch=master)](https://travis-ci.org/gummesson/gulp-pandoc)
+# gulp-pandoc-writer
 
-> Pandoc plugin for gulp.
+`gulp` plugin that generates static files using `pandoc`.
+
+Ported directly from [gulp-pandoc-pdf](https://github.com/brightsparklabs/gulp-pandoc-pdf), just changed to work with more file formats (gulp-pandoc-pdf only produces PDF files).
+
+## Installation
+
+```shell
+npm install gulp-pandoc-writer --save-dev 
+```
 
 ## Usage
 
-First, install `gulp-pandoc` as a development dependency:
+```javascript
+var pandocWriter = require('gulp-pandoc-writer');
 
-~~~ shell
-npm install gulp-pandoc --save-dev
-~~~
-
-Then, add it to your `gulpfile.js`:
-
-~~~ javascript
-var pandoc = require('gulp-pandoc');
-
-gulp.task('docs', function() {
-  gulp.src('docs/*.md')
-    .pipe(pandoc({
-      from: 'markdown',
-      to: 'html5',
-      ext: '.html',
-      args: ['--smart']
-    }))
-    .pipe(gulp.dest('public/'));
+gulp.task('build', function() {
+    gulp.src('src/markdown/**/*.md')
+        .pipe(pandocWriter({
+			outputDir: 'dist/docx',
+			inputFileType:'.md',
+			outputFileType: '.docx',
+			args: [
+				'--smart'
+			]
+        })) 
+        .pipe(gulp.dest('build/html'));
 });
-~~~
+```
 
 ## API
 
-### pandoc(options)
+### pandocWriter(options)
 
-Since Pandoc covers a big range of markup formats the `options.from`, `options.to` and `options.ext` parameters are *required*.
+#### options.outputDir
 
-#### options.from
+**Type:** String
 
-**Type:** string
+The directory to which output will be written by the plugin. The plugin will also generate HTML files for streaming purposes.
 
-The markup format that your documents are authored in, eg: `markdown`.
 
-#### options.to
+#### options.inputFileType
 
-**Type:** string
+This can be any filetype supported by pandoc. Defaults to .md when no filetype is specified.
 
-The markup format that you want to convert your documents into, eg: `html5`.
+#### options.outputFileType
 
-#### options.ext
+**Type:** String
 
-**Type:** string
-
-The extension of the soon-to-be converted documents, eg: `.html`.
+Can be any file type, but the major focus of this plugin are files such as `.docx`, `.odt`, `.epub` that `pandoc` can create but will not write to `STDOUT` for streaming purposes in Gulp.
 
 #### options.args
 
-**Type:** array
+**Type:** Array
 
-Additional command line flags, eg: `['--smart', '--css=style.css']`.
-
-## License
-
-The MIT License (MIT)
-
-Copyright (c) 2014 Ellen Gummesson
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+Additional arguments that might need to be passed to pandoc, e.g. `['--smart']`.
