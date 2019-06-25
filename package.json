@@ -1,34 +1,41 @@
 {
-  "name": "gulp-pandoc",
-  "version": "0.2.2",
-  "description": "Pandoc plugin for gulp.",
-  "main": "index.js",
-  "scripts": {
-    "test": "gulp test"
+  "author": {
+    "email": "dvbnhbq@gmail.com",
+    "name": "Dvbnhbq"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gummesson/gulp-pandoc.git"
-  },
-  "keywords": [
-    "gulpplugin",
-    "pandoc"
-  ],
-  "author": "Ellen Gummesson",
-  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gummesson/gulp-pandoc/issues"
-  },
-  "homepage": "https://github.com/gummesson/gulp-pandoc",
-  "devDependencies": {
-    "gulp": "~3.5.2",
-    "gulp-mocha": "~0.4.1",
-    "gulp-jshint": "~1.4.1",
-    "must": "~0.10.0"
+    "url": "https://github.com/dvbnhbq/gulp-pandoc-any/issues"
   },
   "dependencies": {
-    "pdc": "~0.2.2",
-    "through2": "~0.4.1",
-    "gulp-util": "~2.2.14"
-  }
+    "gulp-util": "^3.0.7",
+    "mkdirp": "^0.5.1",
+    "pdc-any": "git+ssh://git@devel:projects/pdc-any",
+    "through2": "^2.0.1"
+  },
+  "description": "Write any Pandoc files you want",
+  "devDependencies": {},
+  "directories": {},
+  "homepage": "https://github.com/dvbnhbq/gulp-pandoc-any#readme",
+  "keywords": [
+    "pandoc"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "dvbnhbq",
+      "email": "dvbnhbq@gmail.com"
+    }
+  ],
+  "name": "gulp-pandoc-any",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dvbnhbq/gulp-pandoc-any.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.3"
 }
